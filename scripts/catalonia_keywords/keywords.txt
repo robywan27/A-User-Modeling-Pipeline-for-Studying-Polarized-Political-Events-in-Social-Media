@@ -1,0 +1,71 @@
+Massima recall, non precision! Termini generici
+
+catalonia OR
+catalunya OR
+catalona OR
+catalan OR
+referendum OR
+indipendence OR
+indipendencia OR
+indipendentista OR
+autonomia OR
+autonoma OR
+libre OR
+elecciones OR
+spain OR
+espana OR
+puigdemont OR
+@puigdemont OR
+rajoy OR
+@marianorajoy OR
+#catalunyanoestassola OR
+#cataluñalibre OR
+#catalunyavota
+
+todossomosespana
+espanasalealacalle
+espanaselevanta
+catalunyaesespana
+
+
+
+
+
+other terms for filtering:
+cataloña
+cataluña
+catalán
+españa
+independencia
+referéndum
+
+espanoles
+libertad
+bandera
+guardia civil
+policia
+protesta - madrid
+independizo/independizar/independentistas/independencia
+autónomos
+cadiz
+galicia
+unida/unidad - espana
+ley - espanola
+fascista
+democracia
+manifestar
+soberania
+viva
+patriota
+nacional
+verguenza
+violencia
+francisco franco
+
+
+too biased terms, make the search retrieve biased results towards violence fascismo etc; may be useful if want to retrieve also this kind of tweets
+spain police OR
+catalonia violence OR
+francisco franco OR
+madrid fascista OR
+manifestaciòn

@@ -1,0 +1,54 @@
+CREATE TABLE tweets_metadata (
+    tweetid bigint NOT NULL,
+    userid bigint NOT NULL,
+    created_at timestamp with time zone,
+    text text,
+    lang text,
+    in_reply_to_status_id bigint,
+    in_reply_to_user_id bigint,
+    in_reply_to_screen_name text,
+    retweet_count integer,
+    favorite_count integer,
+    quote_count integer,
+    reply_count integer,
+    source text,
+    possibly_sensitive boolean,
+    latitude double precision,
+    longitude double precision,
+    place jsonb,
+    hashtags jsonb,
+    urls jsonb,
+    user_mentions jsonb,
+    media jsonb,
+    is_quote_status boolean,
+    quoted_status_id bigint,
+    quoted_status jsonb,
+    retweeted_status jsonb,
+    CONSTRAINT tweets_metadata_pkey PRIMARY KEY (tweetid),
+    CONSTRAINT tweets_metadata_fkey FOREIGN KEY (userid)
+        REFERENCES public.users_metadata (userid) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+
+CREATE TRIGGER tweet_count_trigger
+    AFTER INSERT
+    ON public.tweets_metadata
+    FOR EACH ROW
+    EXECUTE PROCEDURE public.tweet_count_trigger();
+
+
+
+
+trigger functions -> (name: tweet_count_trigger, new -> code: BEGIN UPDATE users_metadata SET total_tweets = total_tweets + 1 WHERE userid = NEW.userid; RETURN NULL;  END;)
+OR
+CREATE FUNCTION public.tweet_count_trigger()
+    RETURNS trigger
+    LANGUAGE 'plpgsql'
+    COST 100
+    VOLATILE NOT LEAKPROOF    
+AS $BODY$
+BEGIN UPDATE users_metadata SET total_tweets = total_tweets + 1 WHERE userid = NEW.userid; RETURN NULL;  END;
+
+$BODY$;

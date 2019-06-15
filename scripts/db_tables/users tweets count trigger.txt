@@ -1,0 +1,38 @@
+CREATE OR REPLACE FUNCTION update_total_tweets()
+RETURNS TRIGGER
+ AS $BODY$
+DECLARE
+    result INTEGER; 
+BEGIN
+    
+    -- Find out if there is a row
+    result = (select count(*) from users_metadata
+                where userid = new.userid                
+               );
+
+    -- On the update branch, perform the update
+    -- and then return NULL to prevent the 
+    -- original insert from occurring
+    IF result = 1 THEN
+        UPDATE users_metadata
+           SET total_tweets = (total_tweets + new.total_tweets)
+         WHERE userid = new.userid;           
+
+        RETURN null;
+    END IF;
+
+    -- The default branch is to return "NEW" which
+    -- causes the original INSERT to go forward
+    RETURN new;
+
+END; $BODY$
+LANGUAGE 'plpgsql';
+
+
+
+
+CREATE TRIGGER update_total_tweets_trigger
+   before insert
+   ON users_metadata
+   FOR EACH ROW
+   EXECUTE PROCEDURE update_total_tweets();
