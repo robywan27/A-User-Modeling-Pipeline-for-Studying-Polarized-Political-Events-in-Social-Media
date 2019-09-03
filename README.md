@@ -1,5 +1,5 @@
 # A-User-Modeling-Pipeline-for-Studying-Polarized-Political-Events-in-Social-Media
-In this analysis I analyzed two political scenarios from Twitter: the Catalonia Independence referendum and the Lombardy Autonomy Referendum.
+In this analysis (September 2017 - May 2018) I analyzed two political scenarios from Twitter: the Catalonia Independence referendum and the Lombardy Autonomy Referendum.
 The methodology employed consisted in:
 - collecting data by using the Twitter APIs and scraping some data for getting further data
 - analyzing the users by calling some user-modeling APIs (gender, age, ethnicity, location)
